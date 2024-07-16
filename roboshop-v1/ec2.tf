@@ -13,7 +13,7 @@ resource "aws_route53_record" "frontend" {
   name    = "fe.dev.mdevops24.online"
   type    = "A"
   ttl     = "7"
-  records = [aws_instance.frontend.private.ip]
+  records = [aws_instance.frontend.private_ip]
 }
 
 resource "aws_instance" "mongo" {
@@ -31,7 +31,7 @@ resource "aws_route53_record" "mongo" {
   name    = "mongo.dev.mdevops24.online"
   type    = "A"
   ttl     = "7"
-  records = [aws_instance.frontend.private.ip]
+  records = [aws_instance.frontend.private_ip]
 }
 
 resource "aws_instance" "catalogue" {
@@ -49,5 +49,5 @@ resource "aws_route53_record" "catalogue" {
   name    = "catalogue.dev.mdevops24.online"
   type    = "A"
   ttl     = "7"
-  records = [aws_instance.frontend.private.ip]
+  records = [aws_instance.frontend.private_ip]
 }
