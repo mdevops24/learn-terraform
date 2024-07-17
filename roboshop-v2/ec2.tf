@@ -9,6 +9,12 @@ variable "instance_type" {
 variable "security_group_ids"{
     default = ["sg-0a23eac89d8fb6bf3"]
     }
+variable "zone_id"{
+    default = ["Z06408271IBTZUNALJ3LD"]
+    }
+variable "domain_name"{
+    default = ["mdevops24.online"]
+    }
 
 resource "aws_instance" "frontend" {
   ami           = var.ami
@@ -21,8 +27,8 @@ resource "aws_instance" "frontend" {
 }
 
 resource "aws_route53_record" "frontend" {
-  zone_id = "Z06408271IBTZUNALJ3LD"
-  name    = "fe.dev.mdevops24.online"
+  zone_id = var.zone_id
+  name    = "fe.dev.${var.domain_name}"
   type    = "A"
   ttl     = "7"
   records = [aws_instance.frontend.private_ip]
@@ -39,8 +45,8 @@ resource "aws_instance" "mongo" {
 }
 
 resource "aws_route53_record" "mongo" {
-  zone_id = "Z06408271IBTZUNALJ3LD"
-  name    = "mongo.dev.mdevops24.online"
+  zone_id = var.zone_id
+  name    = "mongo.dev.${var.domain_name}"
   type    = "A"
   ttl     = "7"
   records = [aws_instance.frontend.private_ip]
@@ -57,8 +63,8 @@ resource "aws_instance" "catalogue" {
 }
 
 resource "aws_route53_record" "catalogue" {
-  zone_id = "Z06408271IBTZUNALJ3LD"
-  name    = "catalogue.dev.mdevops24.online"
+  zone_id = var.zone_id
+  name    = "catalogue.dev.${var.domain_name}"
   type    = "A"
   ttl     = "7"
   records = [aws_instance.frontend.private_ip]
