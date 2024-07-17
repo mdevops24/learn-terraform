@@ -1,5 +1,5 @@
 resource "aws_instance" "frontend" {
-  ami           = var.ami
+  ami           = data.aws_ami.ami.image_id  #from data source
   instance_type = var.instance_type
   vpc_security_group_ids = var.security_group_ids
 
@@ -17,7 +17,7 @@ resource "aws_route53_record" "frontend" {
 }
 
 resource "aws_instance" "mongo" {
-  ami           = var.ami
+  ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
   vpc_security_group_ids = var.security_group_ids
 
@@ -35,7 +35,7 @@ resource "aws_route53_record" "mongo" {
 }
 
 resource "aws_instance" "catalogue" {
-  ami           = var.ami
+  ami           = data.aws_ami.ami.image_id
   instance_type = var.instance_type
   vpc_security_group_ids = var.security_group_ids
 
