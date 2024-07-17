@@ -1,4 +1,3 @@
-
 resource "aws_instance "frontend" {
   ami           = var.ami
   instance_type = var.instance_type
@@ -13,7 +12,7 @@ resource "aws_route53_record" "frontend" {
   zone_id = var.zone_id
   name    = "fe.dev.${var.domain_name}"
   type    = "A"
-  ttl     = "7"
+  ttl     = 7
   records = [aws_instance.frontend.private_ip]
 }
 
@@ -31,7 +30,7 @@ resource "aws_route53_record" "mongo" {
   zone_id = var.zone_id
   name    = "mongo.dev.${var.domain_name}"
   type    = "A"
-  ttl     = "7"
+  ttl     = 7
   records = [aws_instance.frontend.private_ip]
 }
 
@@ -49,6 +48,6 @@ resource "aws_route53_record" "catalogue" {
   zone_id = var.zone_id
   name    = "catalogue.dev.${var.domain_name}"
   type    = "A"
-  ttl     = "7"
+  ttl     = 7
   records = [aws_instance.frontend.private_ip]
 }
