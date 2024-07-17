@@ -6,10 +6,14 @@ variable "instance_type" {
     default = "t2.micro"
     }
 
+variable "security_group_ids"{
+    default = ["sg-0a23eac89d8fb6bf3"]
+    }
+
 resource "aws_instance" "frontend" {
   ami           = var.ami
   instance_type = var.instance_type
-  vpc_security_group_ids = ["sg-0a23eac89d8fb6bf3"]
+  vpc_security_group_ids = var.security_group_ids
 
   tags = {
     Name = "frontend.dev"
@@ -27,7 +31,7 @@ resource "aws_route53_record" "frontend" {
 resource "aws_instance" "mongo" {
   ami           = var.ami
   instance_type = var.instance_type
-  vpc_security_group_ids = ["sg-0a23eac89d8fb6bf3"]
+  vpc_security_group_ids = security_group_ids
 
   tags = {
     Name = "mongo.dev"
@@ -45,7 +49,7 @@ resource "aws_route53_record" "mongo" {
 resource "aws_instance" "catalogue" {
   ami           = var.ami
   instance_type = var.instance_type
-  vpc_security_group_ids = ["sg-0a23eac89d8fb6bf3"]
+  vpc_security_group_ids = security_group_ids
 
   tags = {
     Name = "catalogue.dev"
