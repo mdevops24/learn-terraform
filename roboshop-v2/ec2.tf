@@ -2,9 +2,13 @@ variable "ami" {
     default = "ami-041e2ea9402c46c32"
     }
 
+variable "instance_type" {
+    default = "t2.micro"
+    }
+
 resource "aws_instance" "frontend" {
   ami           = var.ami
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
   vpc_security_group_ids = ["sg-0a23eac89d8fb6bf3"]
 
   tags = {
@@ -22,7 +26,7 @@ resource "aws_route53_record" "frontend" {
 
 resource "aws_instance" "mongo" {
   ami           = var.ami
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
   vpc_security_group_ids = ["sg-0a23eac89d8fb6bf3"]
 
   tags = {
@@ -40,7 +44,7 @@ resource "aws_route53_record" "mongo" {
 
 resource "aws_instance" "catalogue" {
   ami           = var.ami
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
   vpc_security_group_ids = ["sg-0a23eac89d8fb6bf3"]
 
   tags = {
