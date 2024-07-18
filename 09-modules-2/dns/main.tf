@@ -1,5 +1,5 @@
 resource "aws_route53_record" "frontend" {
-  zone_id = "Z00376861T6KFA01SJSIS"
+  zone_id = "Z06408271IBTZUNALJ3LD"
   name    = "test1.mdevops24.online"
   type    = "A"
   ttl     = 15
