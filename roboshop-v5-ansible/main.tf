@@ -25,7 +25,6 @@ resource "aws_route53_record" "dns_record" {
   #name    = "frontend.dev.${var.domain_name}"
   #name    = "${var.components[count.index]}.dev.${var.domain_name}"
   name     = "${each.key}.dev.${var.domain_name}"
-
   type    = "A"
   ttl     = 7
   #records = [aws_instance.frontend.private_ip]
